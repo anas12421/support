@@ -1,0 +1,12 @@
+
+Html input Class 'dcharge'
+
+<script>
+    $('.dcharge').click(function(){
+      var charge = $(this).val();
+      var total = $(this).attr('data-charge');
+      var total = parseInt(total)+parseInt(charge);
+
+      $('#total').html(total);
+    })
+</script>

@@ -1,0 +1,2 @@
+***controller  ***
+$slug =Str::lower(str_replace($remove, '-',$request->product)).'-'.random_int(100, 30000) ;

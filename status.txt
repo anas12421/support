@@ -1,0 +1,67 @@
+Html Code
+
+ <td>
+    <input type="checkbox" data-id="{{$product->id}}" class="status" data-toggle="toggle" value="{{$product->status}}" {{$product->status == 1 ? 'checked' : ''}}>
+ </td>
+
+
+
+Javascript code
+
+<script>
+    $(".status").change(function(){
+        // var status = $('input[class="status"]:checked').attr('value');
+
+        if($(this).val() != 1){
+            $(this).attr('value' , 1);
+        }
+
+        else{
+            $(this).attr('value' , 0);
+        }
+
+        var product_id = $(this).attr('data-id');
+        var status = $(this).val() ;
+
+
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/getstatus',
+            type: 'POST',
+            data:{'product_id': product_id , 'status' : status},
+
+            success:function(data){
+
+            }
+        });
+
+
+
+
+    })
+</script>
+
+
+
+
+Route
+
+Route::post('/getstatus',[ProductController::class, 'getstatus']);
+
+
+
+Controller
+
+function getstatus(Request $request){
+    Product::find($request->product_id)->update([
+        'status'=> $request->status,
+]);
+
+
+

@@ -1,0 +1,6 @@
+Search lavavel group by sum
+
+$available_colors = Inventory::where('product_id, $product_id)
+->groupBy('color_id)
+->selectRaw('sum(color_id) as sum , color_id')
+->get();
