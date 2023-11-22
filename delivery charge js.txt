@@ -8,5 +8,6 @@ Html input Class 'dcharge'
       var total = parseInt(total)+parseInt(charge);
 
       $('#total').html(total);
+        // output id 'total
     })
 </script>
